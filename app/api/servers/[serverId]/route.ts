@@ -56,3 +56,31 @@ export const DELETE = async (
     return new NextResponse("Internal Server Error", { status: 500 });
   }
 };
+
+export const GET = async (
+  req: Request,
+  { params }: { params: { serverId: string } }
+) => {
+  try {
+    const profile = await currentProfile();
+
+    if (!profile) {
+      return new NextResponse("Unauthorized", { status: 403 });
+    }
+    const server = await db.server.findUnique({
+      where: {
+        id: params.serverId,
+        members: {
+          some: {
+            profileId: profile.id,
+          },
+        },
+      },
+    });
+
+    return NextResponse.json(server);
+  } catch (error) {
+    console.log(error);
+    return new NextResponse("Internal Server Error", { status: 500 });
+  }
+};

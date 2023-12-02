@@ -1,33 +1,38 @@
+"use client";
 import { PageHeader } from "@/components/page-header";
-import { db } from "@/lib/db";
-import { initialProfile } from "@/lib/initial-profile";
 import { Tldraw, track, useEditor } from "@tldraw/tldraw";
 import "@tldraw/tldraw/tldraw.css";
 import { useYjsStore } from "@/useYjsStore";
-import { profile } from "console";
 
-const ServerPage = async ({ params }: { params: { serverId: string } }) => {
-  const HOST_URL =
-    process.env.NODE_ENV === "development"
-      ? "ws://localhost:3000"
-      : "wss://.....";
+import { useEffect, useState } from "react";
+import { Profile, Server } from "@prisma/client";
+import axios from "axios";
+
+const ServerPage = ({ params }: { params: { serverId: string } }) => {
+  const [profile, setProfile] = useState<Profile>();
+  const [server, setServer] = useState<Server>();
+  const editor = useEditor();
+
+  const HOST_URL = "ws://localhost:1234";
 
   const store = useYjsStore({
     roomId: params.serverId,
     hostUrl: HOST_URL,
   });
-  const profile = await initialProfile();
 
-  const server = await db.server.findUnique({
-    where: {
-      id: params.serverId,
-      members: {
-        some: {
-          profileId: profile.id,
-        },
-      },
-    },
-  });
+  useEffect(() => {
+    const getProps = async () => {
+      const server = await axios.get(`/api/servers/${params.serverId}`);
+      const profile = await axios.get(`/api/profile`);
+
+      setProfile(profile.data);
+      setServer(server.data);
+    };
+
+    getProps();
+
+  }, []);
+
   return (
     <div className="bg-white dark:bg-[#313338] flex flex-col h-full">
       <PageHeader
@@ -36,7 +41,7 @@ const ServerPage = async ({ params }: { params: { serverId: string } }) => {
         imageUrl={server?.imageUrl}
       />
       <div className="tldraw__editor">
-        <Tldraw autoFocus store={store} shareZone={<NameEditor />} />
+        <Tldraw autoFocus store={store}  />
       </div>
     </div>
   );
@@ -48,7 +53,7 @@ const NameEditor = track(() => {
   const { color } = editor.user;
 
   editor.user.updateUserPreferences({
-    name: profile.name,
+    name: "good",
   });
 
   return (

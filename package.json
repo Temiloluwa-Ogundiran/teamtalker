@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "concurrently \"next\" \"set HOST=localhost&& set PORT=1234 && npx y-websocket\" --kill-others",
+    "build": "tsc && next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -27,6 +27,7 @@
     "axios": "^1.6.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
+    "concurrently": "^8.2.2",
     "lucide-react": "^0.292.0",
     "next": "^14.0.1",
     "next-themes": "^0.2.1",
