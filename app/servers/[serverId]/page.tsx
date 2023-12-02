@@ -2,6 +2,7 @@ import { PageHeader } from "@/components/page-header";
 import { db } from "@/lib/db";
 import { initialProfile } from "@/lib/initial-profile";
 
+
 const ServerPage = async ({ params }: { params: { serverId: string } }) => {
   const profile = await initialProfile();
 
@@ -22,6 +23,7 @@ const ServerPage = async ({ params }: { params: { serverId: string } }) => {
         serverId={params.serverId}
         imageUrl={server?.imageUrl}
       />
+
     </div>
   );
 };
