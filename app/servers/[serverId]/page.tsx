@@ -30,7 +30,6 @@ const ServerPage = ({ params }: { params: { serverId: string } }) => {
     };
 
     getProps();
-
   }, []);
 
   return (
@@ -41,7 +40,7 @@ const ServerPage = ({ params }: { params: { serverId: string } }) => {
         imageUrl={server?.imageUrl}
       />
       <div className="tldraw__editor">
-        <Tldraw autoFocus store={store}  />
+        <Tldraw autoFocus store={store} />
       </div>
     </div>
   );
