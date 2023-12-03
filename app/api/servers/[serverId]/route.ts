@@ -76,6 +76,16 @@ export const GET = async (
           },
         },
       },
+      include: {
+        members: {
+          include: {
+            profile: true,
+          },
+          orderBy: {
+            role: "asc",
+          },
+        },
+      },
     });
 
     return NextResponse.json(server);

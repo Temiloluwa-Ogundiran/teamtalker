@@ -6,32 +6,30 @@ import { ServerHeader } from "./server-header";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { ServerSection } from "./server-section";
 import { ServerMember } from "./server-member";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { ServerWithMember } from "@/types";
+import { Profile } from "@prisma/client";
 
-export const ServerSidebar = async ({ serverId }: { serverId: string }) => {
-  const profile = await currentProfile();
+export const ServerSidebar = ({ serverId }: { serverId: string }) => {
+  const [profile, setProfile] = useState<Profile>();
+  const [server, setServers] = useState<ServerWithMember>();
 
-  if (!profile) {
-    return redirect("/");
-  }
+  useEffect(() => {
+    const getProps = async () => {
+      const server = await axios.get(`/api/servers/${serverId}`);
+      const profile = await axios.get(`/api/profile`);
 
-  const server = await db.server.findUnique({
-    where: {
-      id: serverId,
-    },
-    include: {
-      members: {
-        include: {
-          profile: true,
-        },
-        orderBy: {
-          role: "asc",
-        },
-      },
-    },
-  });
+      setProfile(profile.data);
 
-  if (!server) {
-    return redirect("/");
+      setServers(server.data);
+    };
+
+    getProps();
+  }, []);
+
+  if (!server || !profile) {
+    return;
   }
 
   const role = server.members.find(

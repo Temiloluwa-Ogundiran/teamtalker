@@ -1,5 +1,4 @@
 "use client";
-import { PageHeader } from "@/components/page-header";
 import { Tldraw, track, useEditor } from "@tldraw/tldraw";
 import "@tldraw/tldraw/tldraw.css";
 import { useYjsStore } from "@/useYjsStore";
@@ -7,6 +6,7 @@ import { useYjsStore } from "@/useYjsStore";
 import { useEffect, useState } from "react";
 import { Profile, Server } from "@prisma/client";
 import axios from "axios";
+import { MobileToggle } from "@/components/mobile-toggle";
 
 const ServerPage = ({ params }: { params: { serverId: string } }) => {
   const [profile, setProfile] = useState<Profile>();
@@ -34,11 +34,9 @@ const ServerPage = ({ params }: { params: { serverId: string } }) => {
 
   return (
     <div className="bg-white dark:bg-[#313338] flex flex-col h-full">
-      <PageHeader
-        name={server?.name}
-        serverId={params.serverId}
-        imageUrl={server?.imageUrl}
-      />
+    <div className="flex h-12 z-10">
+      <MobileToggle serverId={params.serverId} />
+    </div>
       <div className="tldraw__editor">
         <Tldraw autoFocus store={store} />
       </div>

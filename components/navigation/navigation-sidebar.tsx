@@ -1,3 +1,4 @@
+"use client";
 import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
 import { redirect } from "next/navigation";
@@ -7,22 +8,27 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { NavigationItem } from "@/components/navigation/naviagtion-item";
 import { ModeToggle } from "@/components/mode-toggle";
 import { UserButton } from "@clerk/nextjs";
+import { useEffect, useState } from "react";
+import { Server } from "@prisma/client";
+import axios from "axios";
 
-export const NavigationSidebar = async () => {
-  const profile = await currentProfile();
-  if (!profile) {
-    return redirect("/");
+export const NavigationSidebar = ({ serverId }: { serverId: string }) => {
+  const [servers, setServers] = useState<Server[]>();
+
+  useEffect(() => {
+    const getProps = async () => {
+      const servers = await axios.get(`/api/servers`);
+
+      setServers(servers.data);
+    };
+
+    getProps();
+  }, []);
+
+  if (!servers) {
+    return;
   }
 
-  const servers = await db.server.findMany({
-    where: {
-      members: {
-        some: {
-          profileId: profile.id,
-        },
-      },
-    },
-  });
   return (
     <div className="space-y-4 flex flex-col items-center h-full text-primary w-full dark:bg-[#1E1F22] py-3">
       <NavigationAction />

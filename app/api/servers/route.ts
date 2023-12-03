@@ -32,3 +32,27 @@ export const POST = async (req: Request) => {
     return new NextResponse("Internal Error", { status: 500 });
   }
 };
+
+export const GET = async (req: Request) => {
+  try {
+    const profile = await currentProfile();
+
+    if (!profile) {
+      return new Response("Unauthorized", { status: 401 });
+    }
+    const servers = await db.server.findMany({
+      where: {
+        members: {
+          some: {
+            profileId: profile.id,
+          },
+        },
+      },
+    });
+
+    return NextResponse.json(servers);
+  } catch (error) {
+    console.log("[SERVER POST]", error);
+    return new NextResponse("Internal Error", { status: 500 });
+  }
+};

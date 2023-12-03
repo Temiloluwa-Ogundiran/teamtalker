@@ -11,7 +11,7 @@ const serverIdLayout = async ({
   children: React.ReactNode;
   params: { serverId: string };
 }) => {
-  const profile = await initialProfile()
+  const profile = await initialProfile();
   if (!profile) {
     return redirectToSignIn();
   }
@@ -32,9 +32,7 @@ const serverIdLayout = async ({
   }
   return (
     <div className="h-full">
-      <div className="hidden md:flex h-full w-60 z-20 flex-col fixed inset-y-0">
-        <ServerSidebar serverId={params.serverId} />
-      </div>
+      <div className="hidden md:flex h-full w-60 z-20 flex-col fixed inset-y-0"></div>
       <main className="h-full md:pl-60">{children}</main>
     </div>
   );
