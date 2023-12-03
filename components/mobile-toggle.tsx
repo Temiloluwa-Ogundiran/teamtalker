@@ -1,33 +1,11 @@
 import { Menu } from "lucide-react";
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-  SheetFooter,
-} from "@/components/ui/sheet";
 
 import { NavigationSidebar } from "./navigation/navigation-sidebar";
 import { ServerSidebar } from "./server/server-sidebar";
-
-import { Button } from "./ui/button";
 import "flowbite";
 
 export const MobileToggle = ({ serverId }: { serverId: string }) => {
   return (
-    // <Sheet>
-    //   <SheetTrigger asChild>
-    //     <Button variant="outline" size="icon">
-    //       <Menu />
-    //     </Button>
-    //   </SheetTrigger>
-    //   <SheetContent side="left" classNameNameNameName="p-0 flex gap-0">
-    //     <div classNameNameNameName="w-[72px]">
-    //       <NavigationSidebar serverId={serverId} />
-    //     </div>
-    //     <ServerSidebar serverId={serverId} />
-    //   </SheetContent>
-    // </Sheet>
-
     <>
       <div className="text-center">
         <button
