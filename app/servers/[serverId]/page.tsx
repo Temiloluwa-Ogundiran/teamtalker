@@ -35,7 +35,7 @@ const ServerPage = ({ params }: { params: { serverId: string } }) => {
     <div className="bg-white dark:bg-[#313338] flex h-full">
       <div className="mob">
         <MobileToggle serverId={params.serverId} />
-      </div>
+      </div> 
       <div className="tldraw__editor">
         <Tldraw autoFocus store={store} shareZone={<NameEditor />} />
       </div>

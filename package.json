@@ -28,6 +28,8 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "concurrently": "^8.2.2",
+    "flowbite": "^2.2.0",
+    "flowbite-react": "^0.7.0",
     "lucide-react": "^0.292.0",
     "next": "^14.0.1",
     "next-themes": "^0.2.1",

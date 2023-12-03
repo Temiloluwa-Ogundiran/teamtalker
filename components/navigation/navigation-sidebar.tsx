@@ -1,7 +1,4 @@
 "use client";
-import { currentProfile } from "@/lib/current-profile";
-import { db } from "@/lib/db";
-import { redirect } from "next/navigation";
 import { NavigationAction } from "@/components/navigation/navigation-action";
 import { Separator } from "@/components/ui/separator";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -20,7 +17,7 @@ export const NavigationSidebar = ({ serverId }: { serverId: string }) => {
       const servers = await axios.get(`/api/servers`);
 
       setServers(servers.data);
-    };
+    }; 
 
     getProps();
   }, []);
