@@ -11,7 +11,6 @@ import { MobileToggle } from "@/components/mobile-toggle";
 const ServerPage = ({ params }: { params: { serverId: string } }) => {
   const [profile, setProfile] = useState<Profile>();
   const [server, setServer] = useState<Server>();
-  const editor = useEditor();
 
   const HOST_URL = "ws://localhost:1234";
 
@@ -38,20 +37,32 @@ const ServerPage = ({ params }: { params: { serverId: string } }) => {
         <MobileToggle serverId={params.serverId} />
       </div>
       <div className="tldraw__editor">
-        <Tldraw autoFocus store={store} />
+        <Tldraw autoFocus store={store} shareZone={<NameEditor />} />
       </div>
     </div>
   );
 };
 
 const NameEditor = track(() => {
+  const [profile, setProfile] = useState<Profile>();
   const editor = useEditor();
 
   const { color } = editor.user;
+  useEffect(() => {
+    const getProps = async () => {
+      const profile = await axios.get(`/api/profile`);
 
-  editor.user.updateUserPreferences({
-    name: "good",
-  });
+      setProfile(profile.data);
+    };
+
+    getProps();
+  }, []);
+
+  useEffect(() => {
+    editor.user.updateUserPreferences({
+      name: profile?.name,
+    });
+  }, [profile]);
 
   return (
     <div style={{ pointerEvents: "all", display: "flex" }}>
