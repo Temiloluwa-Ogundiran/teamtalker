@@ -79,4 +79,11 @@
     inset: 0px;
     overflow: hidden;
   }
+
+  .mob{
+    position: absolute;
+    left: 0;
+    top: 50%;
+    z-index: 20;
+  }
 }
