@@ -5,6 +5,7 @@ import { Open_Sans } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ModalProvider } from "@/components/providers/modal-provider";
+import { ChakraProvider } from "@chakra-ui/react";
 
 const font = Open_Sans({ subsets: ["latin"] });
 
@@ -28,8 +29,10 @@ export default function RootLayout({
             enableSystem
             storageKey="teamtalkertheme"
           >
-            <ModalProvider />
-            {children}
+            <ChakraProvider>
+              <ModalProvider />
+              {children}
+            </ChakraProvider>
           </ThemeProvider>
         </body>
       </html>

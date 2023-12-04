@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { ServerWithMember } from "@/types";
 import { Profile } from "@prisma/client";
+import { ThreeDots } from "react-loader-spinner";
 
 export const ServerSidebar = ({ serverId }: { serverId: string }) => {
   const [profile, setProfile] = useState<Profile>();
@@ -29,7 +30,19 @@ export const ServerSidebar = ({ serverId }: { serverId: string }) => {
   }, []);
 
   if (!server || !profile) {
-    return;
+    return (
+      <div className="centerLoader">
+        <ThreeDots
+          height="80"
+          width="80"
+          radius="9"
+          color="#313338"
+          ariaLabel="three-dots-loading"
+          wrapperStyle={{}}
+          visible={true}
+        />
+      </div>
+    );
   }
 
   const role = server.members.find(

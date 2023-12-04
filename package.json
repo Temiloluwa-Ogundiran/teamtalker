@@ -9,7 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.8.2",
     "@clerk/nextjs": "^4.27.1",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
     "@hookform/resolvers": "^3.3.2",
     "@prisma/client": "^5.6.0",
     "@radix-ui/react-accordion": "^1.1.2",
@@ -30,6 +33,7 @@
     "concurrently": "^8.2.2",
     "flowbite": "^2.2.0",
     "flowbite-react": "^0.7.0",
+    "framer-motion": "^10.16.12",
     "lucide-react": "^0.292.0",
     "next": "^14.0.1",
     "next-themes": "^0.2.1",
@@ -38,6 +42,7 @@
     "react-dom": "^18",
     "react-dropzone": "^14.2.3",
     "react-hook-form": "^7.48.2",
+    "react-loader-spinner": "^5.4.5",
     "tailwind-merge": "^2.0.0",
     "tailwindcss-animate": "^1.0.7",
     "uploadthing": "^6.0.2",

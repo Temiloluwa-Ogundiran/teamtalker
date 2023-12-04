@@ -8,6 +8,7 @@ import { UserButton } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
 import { Server } from "@prisma/client";
 import axios from "axios";
+import { MagnifyingGlass, ThreeDots } from "react-loader-spinner";
 
 export const NavigationSidebar = ({ serverId }: { serverId: string }) => {
   const [servers, setServers] = useState<Server[]>();
@@ -17,13 +18,25 @@ export const NavigationSidebar = ({ serverId }: { serverId: string }) => {
       const servers = await axios.get(`/api/servers`);
 
       setServers(servers.data);
-    }; 
+    };
 
     getProps();
   }, []);
 
   if (!servers) {
-    return;
+    return (
+      <div className="centerLoader">
+        <ThreeDots
+          height="80"
+          width="80"
+          radius="9"
+          color="#313338"
+          ariaLabel="three-dots-loading"
+          wrapperStyle={{}}
+          visible={true}
+        />
+      </div>
+    );
   }
 
   return (
@@ -42,7 +55,6 @@ export const NavigationSidebar = ({ serverId }: { serverId: string }) => {
         ))}
       </ScrollArea>
       <div className="pb-3 mt-auto flex items-center flex-col gap-y-4">
-        <ModeToggle />
         <UserButton
           afterSignOutUrl="/"
           appearance={{
