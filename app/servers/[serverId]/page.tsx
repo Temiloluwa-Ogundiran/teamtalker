@@ -10,10 +10,7 @@ import { MobileToggle } from "@/components/mobile-toggle";
 import { useParams } from "next/navigation";
 
 const ServerPage = ({ params }: { params: { serverId: string } }) => {
-  const HOST_URL =
-    process.env.NODE_ENV === "development"
-      ? "ws://localhost:1234"
-      : "ws://teamtalker-production.up.railway.app";
+  const HOST_URL = "wss://localhost:1234";
 
   const store = useYjsStore({
     roomId: params.serverId,

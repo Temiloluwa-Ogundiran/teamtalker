@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "concurrently \"next\" \"set HOST=localhost&& set PORT=1234 && npx y-websocket\" --kill-others",
-    "build": "tsc && next build",
+    "build": "concurrently \"next build\" \"set HOST=localhost&& set PORT=1234 && npx y-websocket\" --kill-others",
     "start": "next start",
     "lint": "next lint"
   },
