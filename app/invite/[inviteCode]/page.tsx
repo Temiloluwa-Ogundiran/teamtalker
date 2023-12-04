@@ -2,7 +2,7 @@ import { db } from "@/lib/db";
 import { initialProfile } from "@/lib/initial-profile";
 
 import { redirect } from "next/navigation";
-export const InviteCodePage = async ({
+const InviteCodePage = async ({
   params,
 }: {
   params: { inviteCode: string };
@@ -49,3 +49,4 @@ export const InviteCodePage = async ({
 };
 
 export default InviteCodePage;
+ 

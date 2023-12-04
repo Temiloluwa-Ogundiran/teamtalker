@@ -46,14 +46,14 @@ const NameEditor = track(() => {
     };
 
     getProps();
-  }, []);
+  }, [params.serverId]);
 
   useEffect(() => {
     editor.user.updateUserPreferences({
       name: profile?.name,
       isDarkMode: true,
     });
-  }, [profile]);
+  }, [profile, editor.user]);
 
   return (
     <div style={{ pointerEvents: "all", display: "flex" }}>

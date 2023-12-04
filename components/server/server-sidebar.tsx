@@ -27,7 +27,7 @@ export const ServerSidebar = ({ serverId }: { serverId: string }) => {
     };
 
     getProps();
-  }, []);
+  }, [serverId]);
 
   if (!server || !profile) {
     return (
