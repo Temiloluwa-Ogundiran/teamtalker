@@ -13,7 +13,7 @@ const ServerPage = ({ params }: { params: { serverId: string } }) => {
   const HOST_URL =
     process.env.NODE_ENV === "development"
       ? "ws://localhost:1234"
-      : "wss://teamtalker-production.up.railway.app:1234";
+      : "wss://170.187.203.33:1234";
 
   const store = useYjsStore({
     roomId: params.serverId,

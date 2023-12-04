@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"next\" \"set HOST=localhost&& set PORT=1234 && npx y-websocket\" --kill-others",
+    "dev": "concurrently \"next\" \"set HOST=127.0.0.1&& set PORT=1234 && npx y-websocket\" --kill-others",
     "build": "next build",
-    "start": "concurrently \"next start\" \"set HOST=localhost&& set PORT=1234 && npx y-websocket\" --kill-others ",
+    "start": "concurrently \"next start\" \"set HOST=170.187.203.33&& set PORT=1234 && npx y-websocket\" --kill-others ",
     "lint": "next lint"
   },
   "dependencies": {
