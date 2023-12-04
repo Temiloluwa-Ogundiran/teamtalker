@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "concurrently \"next\" \"set HOST=localhost&& set PORT=1234 && npx y-websocket\" --kill-others",
     "build": "next build",
-    "start": "concurrently \"next start\" \"set HOST=teamtalker-production.up.railway.app&& set PORT=9876 && npx y-websocket\"",
+    "start": "concurrently \"next start\" \"set HOST=teamtalker-production.up.railway.app&& set PORT=9876 && npx y-websocket\" --kill-others ",
     "lint": "next lint"
   },
   "dependencies": {
