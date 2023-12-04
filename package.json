@@ -6,7 +6,7 @@
     "dev": "concurrently \"next\" \"set HOST=localhost&& set PORT=1234 && npx y-websocket\" --kill-others",
     "build": "next build",
     "start": "next start",
-    "start:y-websocket": "npx y-websocket",
+    "start:y-websocket": "HOST=teamtalker-production.up.railway.app PORT=9876 npx y-websocket",
     "start:prod": "concurrently \"npm run start\" \"npm run start:y-websocket\" --kill-others",
     "lint": "next lint"
   },
