@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "concurrently \"next\" \"set HOST=localhost&& set PORT=1234 && npx y-websocket\" --kill-others",
-    "build": "concurrently \"next\" \"set HOST=teamtalker-production.up.railway.app&& set PORT=1234 && npx y-websocket\" --kill-others",
-    "start": "next start",
+    "build": "tsc && next build",
+    "start": "concurrently \"next start\" \"set HOST=teamtalker-production.up.railway.app&& set PORT=1234 && npx y-websocket\" --kill-others",
     "lint": "next lint"
   },
   "dependencies": {
