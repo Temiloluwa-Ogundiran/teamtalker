@@ -32,7 +32,7 @@ export const ServerSidebar = ({ serverId }: { serverId: string }) => {
   if (!server || !profile) {
     return (
       <div className="centerLoader">
-        <ThreeDots
+        {/* <ThreeDots
           height="80"
           width="80"
           radius="9"
@@ -40,7 +40,7 @@ export const ServerSidebar = ({ serverId }: { serverId: string }) => {
           ariaLabel="three-dots-loading"
           wrapperStyle={{}}
           visible={true}
-        />
+        /> */}
       </div>
     );
   }
