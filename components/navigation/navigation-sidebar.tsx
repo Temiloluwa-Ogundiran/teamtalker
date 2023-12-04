@@ -26,7 +26,7 @@ export const NavigationSidebar = ({ serverId }: { serverId: string }) => {
   if (!servers) {
     return (
       <div className="centerLoader">
-        {/* <ThreeDots
+        <ThreeDots
           height="80"
           width="80"
           radius="9"
@@ -34,7 +34,7 @@ export const NavigationSidebar = ({ serverId }: { serverId: string }) => {
           ariaLabel="three-dots-loading"
           wrapperStyle={{}}
           visible={true}
-        /> */}
+        />
       </div>
     );
   }
